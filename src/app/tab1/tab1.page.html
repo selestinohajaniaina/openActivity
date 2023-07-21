@@ -1,21 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Home </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-title>World's news</ion-title>
+    </ion-toolbar>
+    <ion-toolbar color="secondary">
+        <ion-searchbar color="secondary"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card
-    [routerLink]="['/tabs/tab3',activity.id]"
-    button
-    *ngFor="let activity of (activityList | async )"
-  >
-    <ion-img [src]="activity.src"></ion-img>
-    <ion-card-header class="tete">
-      <ion-card-title>{{activity.name}}</ion-card-title>
-      <ion-label
-        >{{activity.like}} <ion-icon name="heart-sharp"></ion-icon
-      ></ion-label>
-    </ion-card-header>
-  </ion-card>
+    
+    <ion-card *ngFor="let newData of articles">
+        <ion-img [src]="newData.urlToImage"></ion-img>
+        <ion-card-header>
+            <ion-card-title>{{ newData.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            {{ newData.content }} <br>
+            {{ newData.author }} <br>
+            {{ newData.publishedAt }} <br>
+            
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>
