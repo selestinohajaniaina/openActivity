@@ -7,6 +7,28 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
+  private error:string = "";
+  public storage:any;
+  private localStorage:any;
+
   constructor() {}
+
+  ngOnInit() {
+    this.selectOnLocalStorage();
+  }
+
+  selectOnLocalStorage() {
+    if(localStorage.getItem('save')) {
+      this.localStorage = `${localStorage.getItem('save')}`;
+      this.storage = this.localStorage.split(' ,,$$##$$,, ');
+      console.log(this.storage);
+    } else {
+      this.error = "Vous n'avez auccun elements enregistré ";
+    }
+  }
+
+  separate(text:any):any {
+    return text.split("&&||&&");
+  }
 
 }

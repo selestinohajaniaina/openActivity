@@ -1,5 +1,7 @@
 {
   "name": "openActivity",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

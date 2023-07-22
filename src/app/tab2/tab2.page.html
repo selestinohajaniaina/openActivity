@@ -1,10 +1,22 @@
 <ion-header>
   <ion-toolbar color="secondary">
-      <ion-title>Your Favorite</ion-title>
-      <ion-icon name="heart-half-outline" slot="end"></ion-icon>
+    <ion-icon name="bookmarks-outline" slot="end"></ion-icon>
+      <ion-title>Enregistré(s)</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card *ngFor="let saved of storage">
+    <ion-card-header>
+      <ion-card-title>{{ separate(saved)[3] }}</ion-card-title>
+      <ion-card-subtitle>{{ separate(saved)[0] }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-img [src]="separate(saved)[5]"></ion-img>
+    <ion-card-content>
+      {{ separate(saved)[1] }} <br>
+      {{ separate(saved)[2] }}
+    </ion-card-content>
+  </ion-card>
   
 </ion-content>

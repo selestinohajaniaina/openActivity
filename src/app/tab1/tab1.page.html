@@ -4,6 +4,7 @@
     </ion-toolbar>
     <ion-toolbar color="secondary">
         <ion-searchbar color="secondary"></ion-searchbar>
+        <ion-progress-bar type="indeterminate" *ngIf="!(articles)"></ion-progress-bar>
     </ion-toolbar>
 </ion-header>
 
@@ -12,13 +13,23 @@
     <ion-card *ngFor="let newData of articles">
         <ion-img [src]="newData.urlToImage"></ion-img>
         <ion-card-header>
+            <ion-card-subtitle>{{ newData.author }}</ion-card-subtitle>
             <ion-card-title>{{ newData.title }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            {{ newData.content }} <br>
-            {{ newData.author }} <br>
+            {{ newData.description }} <br>
+            <ion-label>
             {{ newData.publishedAt }} <br>
-            
+            </ion-label>
+                        <ion-button shape="round" fill="clear" (click)="save(newData.author, newData.description, newData.publishedAt, newData.title, newData.url, newData.urlToImage)">
+                            <ion-icon name="download-outline"></ion-icon>
+                        </ion-button>
+                        <ion-button shape="round" fill="clear" [href]="newData.url" target="_blank">
+                            <ion-icon name="open-outline"></ion-icon>
+                        </ion-button>
+                        <ion-button shape="round" fill="clear" (click)="onShare(newData.title, newData.description, newData.url)">
+                            <ion-icon name="share-social-outline"></ion-icon>
+                        </ion-button>
         </ion-card-content>
     </ion-card>
 
