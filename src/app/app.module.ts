@@ -7,6 +7,7 @@ import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +15,8 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SocialSharing,
-    EmailComposer
+    EmailComposer,
+    CallNumber
   ],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
 import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 import { AlertController } from '@ionic/angular';
 
@@ -15,7 +16,8 @@ export class Tab3Page implements OnInit {
 
   constructor(
     private emailComposer: EmailComposer,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private call: CallNumber
   ) {}
 
   async presentAlert(text: string) {
@@ -61,5 +63,9 @@ export class Tab3Page implements OnInit {
       to:'selestinoolivier@gmail.com',
       type: 'Erreur dans l\'Application',
     })
+  }
+
+  callMe() {
+    this.call.callNumber('+261324110923',true);
   }
 }

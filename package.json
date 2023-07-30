@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
     "@angular/router": "^15.0.0",
+    "@awesome-cordova-plugins/call-number": "^6.4.0",
     "@awesome-cordova-plugins/social-sharing": "^6.4.0",
     "@capacitor/share": "^5.0.6",
     "@ionic/angular": "^6.1.9",
@@ -46,6 +47,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
+    "call-number": "^1.0.1",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-email-composer": "^0.10.1",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
@@ -77,7 +79,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-email-composer": {}
+      "cordova-plugin-email-composer": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "android"
