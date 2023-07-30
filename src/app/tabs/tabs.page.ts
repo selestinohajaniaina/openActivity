@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
+  public theme: string = localStorage.getItem('theme') || 'secondary';
+
   constructor() {}
 
 }

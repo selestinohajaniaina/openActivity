@@ -10,10 +10,12 @@ export class Tab2Page {
   private error:string = "";
   public storage:any;
   private localStorage:any;
+  public theme: string = localStorage.getItem('theme') || 'secondary';
 
   constructor() {}
 
   ngOnInit() {
+    this.theme = localStorage.getItem('theme') || 'secondary';
     this.selectOnLocalStorage();
   }
 
@@ -21,7 +23,7 @@ export class Tab2Page {
     if(localStorage.getItem('save')) {
       this.localStorage = `${localStorage.getItem('save')}`;
       this.storage = this.localStorage.split(' ,,$$##$$,, ');
-      console.log(this.storage);
+      // console.log(this.storage);
     } else {
       this.error = "Vous n'avez auccun elements enregistré ";
     }

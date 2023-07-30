@@ -1,11 +1,11 @@
 <ion-header>
-    <ion-toolbar color="secondary">
+    <ion-toolbar [color]="theme">
         <ion-title>World's news</ion-title>
     </ion-toolbar>
-    <ion-toolbar color="secondary">
-        <ion-searchbar color="secondary"></ion-searchbar>
-        <ion-progress-bar type="indeterminate" *ngIf="!(articles)"></ion-progress-bar>
+    <ion-toolbar [color]="theme">
+        <ion-searchbar [color]="theme" [(ngModel)]="search" (ionChange)="barSearch()"></ion-searchbar>
     </ion-toolbar>
+    <ion-progress-bar type="indeterminate" *ngIf="loaded"></ion-progress-bar>
 </ion-header>
 
 <ion-content>
@@ -24,10 +24,10 @@
                         <ion-button shape="round" fill="clear" (click)="save(newData.author, newData.description, newData.publishedAt, newData.title, newData.url, newData.urlToImage)">
                             <ion-icon name="download-outline"></ion-icon>
                         </ion-button>
-                        <ion-button shape="round" fill="clear" [href]="newData.url" target="_blank">
+                        <ion-button shape="round" fill="clear" (click)="presentAlert(newData.url)">
                             <ion-icon name="open-outline"></ion-icon>
                         </ion-button>
-                        <ion-button shape="round" fill="clear" (click)="onShare(newData.title, newData.description, newData.url)">
+                        <ion-button shape="round" fill="clear" (click)="sShare(newData.title, newData.description, newData.url)">
                             <ion-icon name="share-social-outline"></ion-icon>
                         </ion-button>
         </ion-card-content>

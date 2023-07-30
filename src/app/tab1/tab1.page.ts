@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Share } from '@capacitor/share';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -12,6 +13,7 @@ export class Tab1Page {
   private _url: string = '';
   private domaine: string = 'https://newsapi.org/v2/everything?';
   public q: string = '';
+  public search: string = '';
   private newFrom: string = '';
   private sortBy: string = 'popularity';
   private apiKey: string = '5124b31088564bf081f0d3b08c47f803';
@@ -21,35 +23,46 @@ export class Tab1Page {
   public articles: any;
   private storage: any;
   private localStorage: any;
+  public theme: string = localStorage.getItem('theme') || 'secondary';
+  public loaded: boolean = true;
 
   constructor(
     private http: HttpClient,
+    private socialSharing: SocialSharing,
+    private alertController: AlertController
     ) {
   }
 
-  async onShare(titre: string , content: string , lien: string ) {
-    await Share.share({
-      title: titre,
-      text: content,
+  sShare(titre: string , content: string , lien: string ){
+    this.socialSharing.shareWithOptions({
+      message: content,
       url: lien,
-      dialogTitle: 'Partager cette actualité vers: ',
+      chooserTitle: titre
     });
   }
 
+  barSearch() {
+    this.loaded = true;
+    this._url = `${this.domaine}q=${this.search}&from=${this.newFrom}&sortBy=${this.sortBy}&apiKey=${this.apiKey}`;
+    this.getNews(this._url);
+  }
+
   ngOnInit() {
-    this.q = "microsoft";
+    this.theme = localStorage.getItem('theme') || 'secondary';
+    this.q = this.search || "microsoft";
     this.dateMonthDat = `${this.date.getFullYear()}-${this.date.getMonth()+1}-${this.date.getDate()-1}`;
     this.newFrom = this.dateMonthDat;
     this._url = `${this.domaine}q=${this.q}&from=${this.newFrom}&sortBy=${this.sortBy}&apiKey=${this.apiKey}`;
     this.getNews(this._url);
     this.selectOnLocalStorage();
   }
-
+  
   getNews(url: any) {
     this.http.get(url).subscribe(async (data)=>{
       this.dataNews = await data;
       this.articles = this.dataNews.articles;
       this.shuffleArray(this.articles);
+      this.loaded = this.articles ? false : true;
       // console.log(this.articles);
     })
   }
@@ -81,6 +94,29 @@ export class Tab1Page {
 
   setOnLocalStorage() {
     localStorage.setItem('save', `${this.storage}`);
+  }
+
+  async presentAlert(lien: string) {
+    const alert = await this.alertController.create({
+      header: 'Rediriger vers: '+lien,
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'Annuler',
+        },
+        {
+          text: 'Continuer',
+          role: 'Continuer',
+        },
+      ],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    if(role=="Continuer") {
+      location.href = lien;
+    }
   }
 
 }

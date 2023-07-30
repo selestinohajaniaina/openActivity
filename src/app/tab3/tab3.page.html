@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-toolbar [color]="theme">
+        <ion-title>Parametre & Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item (click)="clicked()">
+            <ion-icon slot="start" name="sunny-outline" *ngIf="!check"></ion-icon>
+            <ion-icon slot="start" name="moon-outline" *ngIf="check"></ion-icon>
+            <ion-label>Mode Sombre</ion-label>
+            <ion-toggle slot="end" [checked]="check"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+            <ion-icon slot="start" name="color-palette-outline"></ion-icon>
+            <ion-label>Theme</ion-label>
+            <ion-select [value]="theme" (ionChange)="handle($event)">
+                <ion-select-option value="primary">primary</ion-select-option>
+                <ion-select-option value="secondary">secondary</ion-select-option>
+                <ion-select-option value="tertiary">tertiary</ion-select-option>
+                <ion-select-option value="success">success</ion-select-option>
+                <ion-select-option value="warning">warning</ion-select-option>
+                <ion-select-option value="danger">danger</ion-select-option>
+                <ion-select-option value="light">light</ion-select-option>
+                <ion-select-option value="medium">medium</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-icon slot="start" name="language-outline"></ion-icon>
+            <ion-label>Langue</ion-label>
+            <ion-select [value]="language" (ionChange)="lang($event)">
+                <ion-select-option value="Allemand">Allemand</ion-select-option>
+                <ion-select-option value="Anglais">Anglais</ion-select-option>
+                <ion-select-option value="Chinois">Chinois</ion-select-option>
+                <ion-select-option value="Espagnol">Espagnol</ion-select-option>
+                <ion-select-option value="Francais">Francais</ion-select-option>
+                <ion-select-option value="Japonnais">Japonnais</ion-select-option>
+                <ion-select-option value="Malagasy">Malagasy</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item (click)="signal()">
+            <ion-icon slot="start" name="mail-open-outline"></ion-icon>
+            <ion-label>selestinoolivier@gmail.com</ion-label>
+        </ion-item>
+
+        <ion-item href="https://facebook.com/selestino.hajaniain" target="_blank">
+            <ion-icon slot="start" name="logo-facebook"></ion-icon>
+            <ion-label>Selestino Hajaniaina</ion-label>
+        </ion-item>
+
+        <ion-item href="https://github.com/selestinohajaniaina" target="_blank">
+            <ion-icon slot="start" name="logo-github"></ion-icon>
+            <ion-label>Selestinohajaniaina</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-list>
+                <ion-item>
+                    <ion-icon slot="start" name="construct-outline"></ion-icon>
+                    <ion-label>Construction</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-text class="ion-text-justify">
+                        L'application a été développée en utilisant les technologies les plus récentes de programmation, notamment <ion-text [color]="theme">Angular</ion-text> et <ion-text [color]="theme">Ionic</ion-text>, pour offrir une expérience moderne et conviviale aux utilisateurs. Grâce à cette combinaison puissante, nous avons pu créer une interface interactive et réactive, permettant une navigation fluide et une réactivité optimale sur toutes les plateformes, que ce soit sur ordinateur, tablette ou téléphone portable. Ces technologies nous ont permis de fournir une application innovante, dotée de fonctionnalités avancées tout en garantissant une maintenance et des mises à jour aisées pour répondre aux besoins changeants de nos utilisateurs.
+                    </ion-text>
+                </ion-item>
+            </ion-list>
+        </ion-item>
+
+    </ion-list>
+</ion-content>
